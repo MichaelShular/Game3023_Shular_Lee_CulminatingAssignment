@@ -2662,6 +2662,9 @@ MonoBehaviour:
   grass:
     serializedVersion: 2
     m_Bits: 128
+  collisionObject:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!95 &676734487
 Animator:
   serializedVersion: 3
