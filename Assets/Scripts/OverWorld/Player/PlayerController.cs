@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private CardinalDirections direction = CardinalDirections.South;
     private bool isWalking;
+    [SerializeField] private int EncounterPercentage;
     private Animator animator;
+    public LayerMask grass;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
                 {
                     direction = CardinalDirections.West;
                 }
-                isWalking = true;
+                isWalking = true;                
             }
             else if (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
             {
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
                 {
                     direction = CardinalDirections.South;
                 } 
-                isWalking = true;
+                isWalking = true;                
             }
         }
         else
@@ -60,17 +62,30 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
             if(transform.position == targetLocation)
             {
+                CheckEncounters();
                 isWalking = false;
             }
         }
+        
     }
-
     private void settingAnimationClip()
     {
         animator.SetBool("IsMoving", isWalking);
         animator.SetInteger("Direction", (int)direction);
         
     }
+    private void CheckEncounters()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, grass))
+        {
+            if (Random.RandomRange(0,100) <= EncounterPercentage)
+            {
+                Debug.Log("Battle Start");
+                //TODO: start battle scene
+            }
+        }
+    }
+
 
 }
 public enum CardinalDirections
