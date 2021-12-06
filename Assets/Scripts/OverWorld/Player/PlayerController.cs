@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int EncounterPercentage;
     private Animator animator;
     public LayerMask grass;
+    public LayerMask collisionObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +40,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     direction = CardinalDirections.West;
-                }
-                isWalking = true;                
+                }                                
             }
             else if (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
             {
@@ -52,21 +52,34 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     direction = CardinalDirections.South;
-                } 
-                isWalking = true;                
+                }                                
             }
-        }
-        else
+            if(IsWalkable(targetLocation))
+                StartCoroutine(MoveCheck(targetLocation));
+        }        
+        
+    }
+    IEnumerator MoveCheck(Vector3 targetPosition)
+    {
+        isWalking = true;
+        while((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
-            if(transform.position == targetLocation)
-            {
-                CheckEncounters();
-                isWalking = false;
-            }
+            yield return null;
         }
-        
+        transform.position = targetPosition;
+        isWalking = false;
+    }
+
+    private bool IsWalkable(Vector3 targetPosition)
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, collisionObject) != null)
+        {
+            return false;
+        }
+
+        return true;
     }
     private void settingAnimationClip()
     {
