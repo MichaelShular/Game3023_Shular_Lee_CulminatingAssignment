@@ -20,10 +20,8 @@ public class RandomEncounterButtonManager : MonoBehaviour
     {
         
         //passing information to next scene
-        DontDestroyOnLoad(player);
-        SceneManager.LoadScene("Main");
-        //enabling player game object components for main world scene
-        player.GetComponent<PlayerController>().enabled = true;
-        player.GetComponent<SpriteRenderer>().enabled = true;
+        //DontDestroyOnLoad(player);
+        SceneManager.LoadScene("OverWorld");
+        
     }
 }

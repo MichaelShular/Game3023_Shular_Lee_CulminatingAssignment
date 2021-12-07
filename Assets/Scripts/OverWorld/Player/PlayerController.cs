@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("EventSystem").GetComponent<GameState>().LoadPlayerPosition();
         animator = GetComponent<Animator>();
     }
 
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
         }       
         transform.position = targetPosition;
         isWalking = false;
-        
+        CheckEncounters();
     }
 
     private bool IsWalkable(Vector3 targetPosition)
@@ -85,10 +87,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grass))
         {
-            if (Random.RandomRange(1,101) <= EncounterPercentage)
+            if (Random.Range(1,101) <= EncounterPercentage)
             {
                 Debug.Log("Battle Start");
-                //TODO: start battle scene
+                GameObject.Find("EventSystem").GetComponent<GameState>().SavePlayer();
+                SceneManager.LoadScene("BattleScene");                
             }
         }
     }
