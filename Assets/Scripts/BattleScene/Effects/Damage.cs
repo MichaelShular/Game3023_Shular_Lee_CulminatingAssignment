@@ -15,8 +15,12 @@ public class Damage : IEffect
             other.hasShield = false;
             return;
         }
-
-        other.health -= Random.Range(DamageMin, DamageMax);
-        //Debug.Log(other.health);
+        int damage = Random.Range(DamageMin + self.attack, DamageMax + self.attack) - other.defense;
+        
+        if (damage < 0)
+            other.health -= 1;
+        else
+            other.health -= damage;
+        
     }
 }

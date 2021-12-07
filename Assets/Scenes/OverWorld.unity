@@ -2983,6 +2983,8 @@ MonoBehaviour:
   collisionObject:
     serializedVersion: 2
     m_Bits: 256
+  player: {fileID: 11400000, guid: c594c8e4ffb5ae6478cc87e198d34125, type: 2}
+  a: {fileID: 11400000, guid: 873563c9936107240922e72c92e6254a, type: 2}
 --- !u!95 &676734487
 Animator:
   serializedVersion: 3

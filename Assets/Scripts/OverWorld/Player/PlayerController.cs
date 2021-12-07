@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask grass;
     public LayerMask collisionObject;
     private Vector2 input;
+    public PlayerAbility player;
+    public Ability a;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         move();
         settingAnimationClip();
+        if(Input.GetKeyUp(KeyCode.O))
+        {
+            player.currentAbility[0] = a;
+        }
     }
 
     private void move()
@@ -90,7 +96,7 @@ public class PlayerController : MonoBehaviour
             if (Random.Range(1,101) <= EncounterPercentage)
             {
                 Debug.Log("Battle Start");
-                GameObject.Find("EventSystem").GetComponent<GameState>().SavePlayer();
+                //GameObject.Find("EventSystem").GetComponent<GameState>().SavePlayer();                
                 SceneManager.LoadScene("BattleScene");                
             }
         }

@@ -6,7 +6,28 @@ public class AICharacter : ICharacter
 {
     private enum AITypeOfStates { attack, playerStunned, heal, goingForWin};
 
-    private AITypeOfStates CurrentState = 0;
+    private AITypeOfStates CurrentState = 0;    
+    public SpriteRenderer spriteRenderer;
+    private void Start()
+    {        
+        int a = Random.Range(0, pokemons.Count - 1);
+        Debug.Log(pokemons.Count);
+        Debug.Log(a);
+        currentPokemon = pokemons[a];
+        abilities = currentPokemon.Ability;
+        maxHealth = currentPokemon.MaxHp;
+        attack = currentPokemon.Attack;
+        defense = currentPokemon.Defence;
+        health = maxHealth;
+        hasShield = false;
+        incapacitated = false;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = health;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = currentPokemon.FrontSprite;
+        
+
+    }
     public override void TakeTurn(Encounter encounter)
     {
 
@@ -29,6 +50,11 @@ public class AICharacter : ICharacter
             default:
                 break;
         }
+    }
+
+    static void ChangeAbility(Ability ability)
+    {
+
     }
 
     private void chooseState(Encounter encounter)
