@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public LayerMask grass;
     public LayerMask collisionObject;
+    private Vector2 input;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,51 +31,44 @@ public class PlayerController : MonoBehaviour
 
         if (!isWalking)
         {
-            if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
+            input.x = Input.GetAxisRaw("Horizontal");
+            input.y = Input.GetAxisRaw("Vertical");
+            if (input.x != 0) input.y = 0;
+            if (input != Vector2.zero)
             {
-                targetLocation = transform.position + Vector3.right * Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
-                if(Input.GetAxisRaw("Horizontal") > 0)
-                {
+                targetLocation = transform.position;
+                targetLocation.x += input.x;
+                targetLocation.y += input.y;
+                if(input.x > 0)
                     direction = CardinalDirections.East;
-                }
-                else
-                {
+                else if(input.x < 0)
                     direction = CardinalDirections.West;
-                }                                
-            }
-            else if (Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
-            {
-                targetLocation = transform.position + Vector3.up * Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
-                if (Input.GetAxisRaw("Vertical") > 0)
-                {
+                else if (input.y > 0)
                     direction = CardinalDirections.North;
-                }
-                else
-                {
+                else if (input.y < 0)
                     direction = CardinalDirections.South;
-                }                                
-            }
-            if(IsWalkable(targetLocation))
-                StartCoroutine(MoveCheck(targetLocation));
-        }        
-        
+                if (IsWalkable(targetLocation))
+                    StartCoroutine(MoveCheck(targetLocation));
+            }           
+        }       
     }
     IEnumerator MoveCheck(Vector3 targetPosition)
     {
         isWalking = true;
-        while((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
+        while ((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);
+            transform.position = Vector3.MoveTowards(transform.position, targetLocation, step);            
             yield return null;
-        }
+        }       
         transform.position = targetPosition;
         isWalking = false;
+        
     }
 
     private bool IsWalkable(Vector3 targetPosition)
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, collisionObject) != null)
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, collisionObject) != null)
         {
             return false;
         }
@@ -91,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grass))
         {
-            if (Random.RandomRange(0,100) <= EncounterPercentage)
+            if (Random.RandomRange(1,101) <= EncounterPercentage)
             {
                 Debug.Log("Battle Start");
                 //TODO: start battle scene
