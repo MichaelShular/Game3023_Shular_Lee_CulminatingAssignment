@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public LayerMask grass;
     public LayerMask collisionObject;
+    public LayerMask NPC;
     private Vector2 input;
     public PlayerAbility player;
     public Ability a;
 
+    public bool isInteract;
     [Header("Dust Particals")]
     private ParticleSystem dustTrail;
     public Color trailGround;
@@ -28,24 +30,24 @@ public class PlayerController : MonoBehaviour
         GameObject.Find("EventSystem").GetComponent<GameState>().LoadPlayerPosition();
         animator = GetComponent<Animator>();
         dustTrail = GetComponentInChildren<ParticleSystem>();
+        isInteract = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        move();
-        settingAnimationClip();
-        if(Input.GetKeyUp(KeyCode.O))
+        if (!isInteract)
         {
-            player.currentAbility[0] = a;
+            move();
+            settingAnimationClip();
         }
+        
     }
 
     private void move()
     {
-
         if (!isWalking)
-        {
+        {            
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
             if (input.x != 0) input.y = 0;
@@ -65,7 +67,11 @@ public class PlayerController : MonoBehaviour
                 if (IsWalkable(targetLocation))
                     StartCoroutine(MoveCheck(targetLocation));
             }           
-        }       
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InteractNPC();
+        }
     }
     IEnumerator MoveCheck(Vector3 targetPosition)
     {
@@ -81,10 +87,37 @@ public class PlayerController : MonoBehaviour
         isWalking = false;
         CheckEncounters();
     }
+    void InteractNPC()
+    {
+        Vector3 facingDirection = new Vector3(0,0,0);
+       switch(direction)
+        {
+            case CardinalDirections.East:
+                facingDirection = Vector3.right;
+                break;
+            case CardinalDirections.North:
+                facingDirection = Vector3.up;
+                break;
+            case CardinalDirections.South:
+                facingDirection = Vector3.down;
+                break;
+            case CardinalDirections.West:
+                facingDirection = Vector3.left;
+                break;
+        }
+        Vector3 interact = transform.position + facingDirection;
+        var inter = Physics2D.OverlapCircle(interact, 0.3f, NPC);
+        if(inter != null)
+        {
+            inter.GetComponent<NPC>().Interact(this);
+            isInteract = true;
+        }
+
+    }
 
     private bool IsWalkable(Vector3 targetPosition)
     {
-        if (Physics2D.OverlapCircle(targetPosition, 0.3f, collisionObject) != null)
+        if (Physics2D.OverlapCircle(targetPosition, 0.3f, collisionObject | NPC) != null)
         {
             return false;
         }
