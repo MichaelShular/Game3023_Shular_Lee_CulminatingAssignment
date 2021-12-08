@@ -14,11 +14,18 @@ public class PlayerController : MonoBehaviour
     public LayerMask grass;
     public LayerMask collisionObject;
     private Vector2 input;
+
+    [Header("Dust Particals")]
+    private ParticleSystem dustTrail;
+    public Color trailGround;
+    public Color trailGrass;
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject.Find("EventSystem").GetComponent<GameState>().LoadPlayerPosition();
         animator = GetComponent<Animator>();
+        dustTrail = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -57,6 +64,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator MoveCheck(Vector3 targetPosition)
     {
         isWalking = true;
+        createDustTrail();
         while ((targetPosition - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             float step = speed * Time.deltaTime;
@@ -96,6 +104,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void createDustTrail()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, grass))
+        {
+            dustTrail.GetComponent<Renderer>().material.SetColor("_Color", trailGrass);
+        }
+        else
+        {
+            dustTrail.GetComponent<Renderer>().material.SetColor("_Color", trailGround);
+        }
+        dustTrail.Play();
+    }
 
 }
 public enum CardinalDirections
