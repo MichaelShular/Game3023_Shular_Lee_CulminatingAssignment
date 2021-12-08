@@ -14,6 +14,7 @@ public abstract class ICharacter : MonoBehaviour
     public Slider healthBar;    
     public int attack;
     public int defense;
+    public string pName;
     private Encounter encounter;
     public UnityEvent<Ability, ICharacter> onAbilityCast;    
     public List<PokemonBase> pokemons;

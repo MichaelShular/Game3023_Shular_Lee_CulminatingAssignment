@@ -12,6 +12,7 @@ public class AICharacter : ICharacter
     {
         int a = Random.Range(0, pokemons.Count);       
         currentPokemon = pokemons[a];
+        pName = pokemons[a].name;
         abilities = currentPokemon.Ability;
         maxHealth = currentPokemon.MaxHp;
         attack = currentPokemon.Attack;

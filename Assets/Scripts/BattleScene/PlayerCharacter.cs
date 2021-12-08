@@ -10,18 +10,16 @@ public class PlayerCharacter : ICharacter
     public PlayerAbility currA;
     
     private void Start()
-    {
-        
+    {        
         currentPokemon = pokemons[0];
-        
+        pName = pokemons[0].name;
         abilities = currA.currentAbility;
         maxHealth = currentPokemon.MaxHp;
         attack = currentPokemon.Attack;
         defense = currentPokemon.Defence;
         health = maxHealth;
         hasShield = false;
-        incapacitated = false;
-        
+        incapacitated = false;        
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -35,8 +33,6 @@ public class PlayerCharacter : ICharacter
     public override void TakeTurn(Encounter encounter)
     {
         myEnounter = encounter;
-    }
-
-    
+    }   
 
 }

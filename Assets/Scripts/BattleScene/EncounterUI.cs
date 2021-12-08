@@ -19,8 +19,7 @@ public class EncounterUI : MonoBehaviour
     UnityEvent m_MyEvent = new UnityEvent();
     void Start()
     {
-
-        animateTextCoroutine = AnimateTextCoroutine("You have encounter a battle", timeBetweenCharacters);
+        animateTextCoroutine = AnimateTextCoroutine("You have met a wild pokemon", timeBetweenCharacters);
         StartCoroutine(animateTextCoroutine);
 
         encounter.onTurnBegin.AddListener(AnnouceTurnBegin);
@@ -69,7 +68,7 @@ public class EncounterUI : MonoBehaviour
         //}
         if(encounter.currentCharacter == encounter.player)
         {
-            animateTextCoroutine = AnimateTextCoroutine("It is " + whoseTurn.name + "'s turn", timeBetweenCharacters);
+            animateTextCoroutine = AnimateTextCoroutine("It is " + whoseTurn.pName + "'s turn", timeBetweenCharacters);
             StartCoroutine(animateTextCoroutine);
         }
        
@@ -79,7 +78,7 @@ public class EncounterUI : MonoBehaviour
     void abilityCast(Ability whichAbility, ICharacter whoCasted)
     {        
         encounter.haveVisableUI = false;
-        animateTextCoroutine = AnimateTextCoroutine(whoCasted.name + " casted "  + whichAbility.name, timeBetweenCharacters);
+        animateTextCoroutine = AnimateTextCoroutine(whoCasted.pName + " casted "  + whichAbility.name, timeBetweenCharacters);
         StartCoroutine(animateTextCoroutine);
     }
 

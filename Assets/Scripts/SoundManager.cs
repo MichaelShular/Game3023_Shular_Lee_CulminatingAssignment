@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+public enum TrackID
+{
+    OverWorld,
+    BattleMusic,
+}
 public class SoundManager : MonoBehaviour
 {
-    public enum TrackID
-    {
-        OverWorld,
-        BattleMusic,
-    }
+    
     private SoundManager() { }
 
     private static SoundManager instance = null;

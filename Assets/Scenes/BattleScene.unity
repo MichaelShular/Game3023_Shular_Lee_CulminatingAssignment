@@ -2760,6 +2760,9 @@ MonoBehaviour:
   pokemons:
   - {fileID: 11400000, guid: 48d8536baea6c6142b76a03cd391f10d, type: 2}
   - {fileID: 11400000, guid: 626cf6e61c59fcb4bba7f5bbdd3d6a7a, type: 2}
+  - {fileID: 11400000, guid: f9fe60138679b364884119fac0a1fb6f, type: 2}
+  - {fileID: 11400000, guid: 24af1ed807f45754ab6b78ae7dffd3f6, type: 2}
+  - {fileID: 11400000, guid: 9cc96df174733514e96887fcd6c0897d, type: 2}
   currentPokemon: {fileID: 0}
   spriteRenderer: {fileID: 1631734675}
 --- !u!212 &1631734675

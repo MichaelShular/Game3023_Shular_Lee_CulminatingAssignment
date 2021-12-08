@@ -29,6 +29,7 @@ public class Encounter : MonoBehaviour
         currentCharacter = player;
         haveVisableUI = true;
         player.onAbilityCast.AddListener(OnAbilityCastCallBack);
+        GameObject.Find("MusicManager").GetComponent<SoundManager>().PlayTrack(TrackID.BattleMusic);
     }
 
     public void OnAbilityCastCallBack(Ability casted, ICharacter self)

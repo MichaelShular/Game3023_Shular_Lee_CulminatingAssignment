@@ -35504,13 +35504,15 @@ MonoBehaviour:
   targetLocation: {x: 0, y: 0, z: 0}
   speed: 2
   direction: 2
-  EncounterPercentage: 40
+  EncounterPercentage: 30
   grass:
     serializedVersion: 2
     m_Bits: 128
   collisionObject:
     serializedVersion: 2
     m_Bits: 256
+  player: {fileID: 11400000, guid: c594c8e4ffb5ae6478cc87e198d34125, type: 2}
+  a: {fileID: 0}
   trailGround: {r: 0.8396226, g: 0.7187736, b: 0.44753468, a: 1}
   trailGrass: {r: 0.0021698475, g: 1, b: 0, a: 1}
 --- !u!95 &676734487
