@@ -40,9 +40,7 @@ public class EncounterUI : MonoBehaviour
         else
         {
             nextButton.SetActive(true);
-        }
-
-            
+        }            
     }
 
     IEnumerator AnimateTextCoroutine(string message, float secPerCharacter)
@@ -79,14 +77,7 @@ public class EncounterUI : MonoBehaviour
     }
 
     void abilityCast(Ability whichAbility, ICharacter whoCasted)
-    {
-
-        //if (animateTextCoroutine != null)
-        //{
-        //    Debug.Log("asd");
-        //    StopCoroutine(animateTextCoroutine);
-        //}
-        //Debug.Log(whoCasted.name);
+    {        
         encounter.haveVisableUI = false;
         animateTextCoroutine = AnimateTextCoroutine(whoCasted.name + " casted "  + whichAbility.name, timeBetweenCharacters);
         StartCoroutine(animateTextCoroutine);

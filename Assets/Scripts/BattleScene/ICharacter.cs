@@ -6,29 +6,25 @@ using UnityEngine.UI;
 
 public abstract class ICharacter : MonoBehaviour
 {
-    [SerializeField] public Ability[] abilities;
-    [SerializeField] public int health;
+    [SerializeField] public List<Ability> abilities;
+    public int health;
     public int maxHealth;
     public bool hasShield;
     public bool incapacitated;
-    public Slider healthBar;
-
+    public Slider healthBar;    
+    public int attack;
+    public int defense;
     private Encounter encounter;
-    public UnityEvent<Ability, ICharacter> onAbilityCast;
+    public UnityEvent<Ability, ICharacter> onAbilityCast;    
+    public List<PokemonBase> pokemons;
+    public PokemonBase currentPokemon;
     public void UseAbilty(int abilitySlot, ICharacter self, ICharacter opponent)
     {
         abilities[abilitySlot].Cast(self, opponent);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        maxHealth = health;
-        hasShield = false;
-        incapacitated = false;
         healthBar = this.GetComponent<Slider>();
-        healthBar.maxValue = maxHealth;
-        healthBar.value = health;
     }
 
     // Update is called once per frame

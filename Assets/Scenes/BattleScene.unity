@@ -1547,20 +1547,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695921c2b6a17e043bf7cbe3a0c80282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-  - {fileID: 11400000, guid: a6d42a9155b62fc4c801d451fa309a36, type: 2}
-  - {fileID: 11400000, guid: 41a278e0d50260c4d974fb6ac8a5ae59, type: 2}
-  - {fileID: 11400000, guid: bde1c2cae5501ad41aa6025db771fb12, type: 2}
-  - {fileID: 11400000, guid: 2cf38f9e663e9da4e953784458153c52, type: 2}
+  abilities: []
   health: 20
   maxHealth: 0
   hasShield: 0
   incapacitated: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 817373072}
+  attack: 0
+  defense: 0
   onAbilityCast:
     m_PersistentCalls:
       m_Calls: []
+  pokemons:
+  - {fileID: 11400000, guid: 48d8536baea6c6142b76a03cd391f10d, type: 2}
+  currentPokemon: {fileID: 0}
   myEnounter: {fileID: 1595454889}
+  spriteRenderer: {fileID: 817373071}
+  currA: {fileID: 11400000, guid: c594c8e4ffb5ae6478cc87e198d34125, type: 2}
 --- !u!212 &817373071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2743,19 +2746,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f94d934406425047b5f18d90117845a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-  - {fileID: 11400000, guid: a6d42a9155b62fc4c801d451fa309a36, type: 2}
-  - {fileID: 11400000, guid: 41a278e0d50260c4d974fb6ac8a5ae59, type: 2}
-  - {fileID: 11400000, guid: bde1c2cae5501ad41aa6025db771fb12, type: 2}
-  - {fileID: 11400000, guid: 2cf38f9e663e9da4e953784458153c52, type: 2}
+  abilities: []
   health: 20
   maxHealth: 0
   hasShield: 0
   incapacitated: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1631734676}
+  attack: 0
+  defense: 0
   onAbilityCast:
     m_PersistentCalls:
       m_Calls: []
+  pokemons:
+  - {fileID: 11400000, guid: 48d8536baea6c6142b76a03cd391f10d, type: 2}
+  - {fileID: 11400000, guid: 626cf6e61c59fcb4bba7f5bbdd3d6a7a, type: 2}
+  currentPokemon: {fileID: 0}
+  spriteRenderer: {fileID: 1631734675}
 --- !u!212 &1631734675
 SpriteRenderer:
   m_ObjectHideFlags: 0

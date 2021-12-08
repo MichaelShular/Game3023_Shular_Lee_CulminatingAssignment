@@ -20,6 +20,11 @@ public class GameState : MonoBehaviour
             UI.SetActive(UIOn);
         }
     }
+    public void NewGame()
+    {
+        PlayerPrefs.SetFloat("x-axis", 0);
+        PlayerPrefs.SetFloat("y-axis", 0);
+    }
     public void SavePlayer()
     {
         PlayerPrefs.SetFloat("x-axis", player.transform.position.x);
