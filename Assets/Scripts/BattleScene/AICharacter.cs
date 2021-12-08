@@ -9,10 +9,8 @@ public class AICharacter : ICharacter
     private AITypeOfStates CurrentState = 0;    
     public SpriteRenderer spriteRenderer;
     private void Start()
-    {        
-        int a = Random.Range(0, pokemons.Count - 1);
-        Debug.Log(pokemons.Count);
-        Debug.Log(a);
+    {
+        int a = Random.Range(0, pokemons.Count);       
         currentPokemon = pokemons[a];
         abilities = currentPokemon.Ability;
         maxHealth = currentPokemon.MaxHp;
@@ -25,8 +23,6 @@ public class AICharacter : ICharacter
         healthBar.value = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = currentPokemon.FrontSprite;
-        
-
     }
     public override void TakeTurn(Encounter encounter)
     {

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675abe407ab3d9a4d914200442b98e5c, type: 3}
+  m_Name: Squirtle
+  m_EditorClassIdentifier: 
+  name: Squirtle
+  description: 
+  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
+  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
+  maxHp: 50
+  attack: 9
+  defense: 7
+  learnAbility:
+  - {fileID: 11400000, guid: a6d42a9155b62fc4c801d451fa309a36, type: 2}
+  - {fileID: 11400000, guid: 41a278e0d50260c4d974fb6ac8a5ae59, type: 2}
+  - {fileID: 11400000, guid: bde1c2cae5501ad41aa6025db771fb12, type: 2}
+  - {fileID: 11400000, guid: 2cf38f9e663e9da4e953784458153c52, type: 2}
