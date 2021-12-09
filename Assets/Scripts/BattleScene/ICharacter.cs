@@ -19,6 +19,7 @@ public abstract class ICharacter : MonoBehaviour
     public UnityEvent<Ability, ICharacter> onAbilityCast;    
     public List<PokemonBase> pokemons;
     public PokemonBase currentPokemon;
+    public Animator charactersAnimation;
     public void UseAbilty(int abilitySlot, ICharacter self, ICharacter opponent)
     {
         abilities[abilitySlot].Cast(self, opponent);

@@ -9,6 +9,7 @@ public class PlayerCharacter : ICharacter
     public SpriteRenderer spriteRenderer;
     public PlayerAbility currA;
     
+    
     private void Start()
     {        
         currentPokemon = pokemons[0];
@@ -24,11 +25,13 @@ public class PlayerCharacter : ICharacter
         healthBar.value = health;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = currentPokemon.BackSprite;
-
+        charactersAnimation = GetComponent<Animator>();
+        charactersAnimation.SetInteger("BattleAnimation", 4);
     }
     public void CastAbility(int slot)
     {
-        UseAbilty(slot, this, myEnounter.enemy);
+        charactersAnimation.SetInteger("BattleAnimation", slot);
+        UseAbilty(slot, this, myEnounter.enemy);        
     }
     public override void TakeTurn(Encounter encounter)
     {
