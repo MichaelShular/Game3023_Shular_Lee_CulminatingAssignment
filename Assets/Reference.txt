@@ -1,3 +1,9 @@
 Fixing black spaces in grid tiles
 https://www.youtube.com/watch?v=kbx528-lnoU&ab_channel=Bardent
 
+adding paritcals to animation 
+https://www.youtube.com/watch?v=JzslPG5CNb8&ab_channel=seannakamura
+
+switch animations for abilities
+https://answers.unity.com/questions/1319072/how-to-change-animation-clips-of-an-animator-state.html
+https://docs.unity3d.com/Manual/AnimatorOverrideController.html
