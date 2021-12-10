@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
 
     private void createDustTrail()
     {
+        dustTrail.GetComponent<Renderer>().material.SetColor("_Color", trailGround);
         if (Physics2D.OverlapCircle(transform.position, 0.2f, grass))
         {
             dustTrail.GetComponent<Renderer>().material.SetColor("_Color", trailGrass);

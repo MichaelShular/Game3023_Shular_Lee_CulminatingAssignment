@@ -21,7 +21,7 @@ public class TitleSceneUIController : MonoBehaviour
 
     public void loadGame()
     {
-        SceneManager.LoadScene("OverWorldScene");
+        SceneManager.LoadScene("OverWorld");
     }
 
     public void quitGame()
