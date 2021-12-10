@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Encounter : MonoBehaviour
 {
     private int turnNumber;
@@ -23,13 +25,18 @@ public class Encounter : MonoBehaviour
     public UnityEvent<AICharacter> onEnemyTurnBegin;
     public UnityEvent<ICharacter> onTurnBegin;
     public bool haveVisableUI;
-
+    public TextMeshProUGUI battlestateText;
+    public Canvas gameState;
     void Start()
     {
         currentCharacter = player;
         haveVisableUI = true;
         player.onAbilityCast.AddListener(OnAbilityCastCallBack);
-        GameObject.Find("MusicManager").GetComponent<SoundManager>().PlayTrack(TrackID.BattleMusic);
+        gameState.enabled = false;
+        if(GameObject.Find("MusicManager") != null)
+        {
+            GameObject.Find("MusicManager").GetComponent<SoundManager>().PlayTrack(TrackID.BattleMusic);
+        }
     }
 
     public void OnAbilityCastCallBack(Ability casted, ICharacter self)
@@ -42,6 +49,17 @@ public class Encounter : MonoBehaviour
 
     public void nextTurn()
     {
+        if(player.health < 0)
+        {
+            battlestateText.text = "You Lost";
+            gameState.enabled = true; 
+        }
+        if(enemy.health < 0)
+        {
+            gameState.enabled = true;
+            battlestateText.text = "You Won";
+        }
+
         if (currentCharacter == player)
         {
             player.charactersAnimation.SetInteger("BattleAnimation", 4);
@@ -84,6 +102,11 @@ public class Encounter : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         UpdateTurns();
+    }
+
+    public void backToOverWorld()
+    {
+        SceneManager.LoadScene("OverWorld");
     }
 
 }

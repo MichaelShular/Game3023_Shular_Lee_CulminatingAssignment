@@ -46,7 +46,6 @@ public class LightController : MonoBehaviour
             globalLight.intensity = lightamount;
 
         }
-        Debug.Log(lightamount);
         yield return new WaitForSeconds(10);
         StartCoroutine(dayAndNightCycleTimer());
     }
