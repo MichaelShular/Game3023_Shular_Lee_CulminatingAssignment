@@ -11,10 +11,11 @@ public class PlayerCharacter : ICharacter
     public SpriteRenderer spriteRenderer;
     public PlayerAbility currA;
     public List<Button> buttons;
-    
+    private AnimatorOverrideController overrideController;
+    public List<AnimationClip> allAnimationClips;
     private void Start()
     {
-        for(int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = currA.currentAbility[i].name;
         }
@@ -33,6 +34,7 @@ public class PlayerCharacter : ICharacter
         spriteRenderer.sprite = currentPokemon.BackSprite;
         charactersAnimation = GetComponent<Animator>();
         charactersAnimation.SetInteger("BattleAnimation", 4);
+        newAnimations();
     }
     public void CastAbility(int slot)
     {
@@ -43,5 +45,32 @@ public class PlayerCharacter : ICharacter
     {
         myEnounter = encounter;
     }   
+
+    private void newAnimations()
+    {
+        overrideController = new AnimatorOverrideController();
+        overrideController.runtimeAnimatorController = charactersAnimation.runtimeAnimatorController;
+
+        foreach (AnimationClip item in allAnimationClips)
+        {
+            if (item.name == currA.currentAbility[0].name)
+            {
+                overrideController["BasicAttack"] = item;
+            }
+            if (item.name == currA.currentAbility[1].name)
+            {
+                overrideController["SelfHeal"] = item;
+            }
+            if (item.name == currA.currentAbility[2].name)
+            {
+                overrideController["CreateShield"] = item;
+            }
+            if (item.name == currA.currentAbility[3].name)
+            {
+                overrideController["Stun"] = item;
+            }
+        }
+        charactersAnimation.runtimeAnimatorController = overrideController;
+    }
 
 }

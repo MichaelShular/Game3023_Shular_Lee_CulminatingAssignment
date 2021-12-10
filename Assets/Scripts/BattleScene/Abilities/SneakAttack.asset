@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee2086093b770446a47a9c2a18efba4, type: 3}
   m_Name: SneakAttack
   m_EditorClassIdentifier: 
-  name: 
+  name: SneakAttack
   description: 
   effects:
   - {fileID: 11400000, guid: 1506fa462488bc7499b6b7230c8a3d48, type: 2}

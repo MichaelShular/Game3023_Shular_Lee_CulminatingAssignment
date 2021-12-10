@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231276c887c8d3944870c7a4c9ba72fd, type: 3}
   m_Name: SmallHeal
   m_EditorClassIdentifier: 
-  HealingMin: 0
-  HealingMax: 5
+  HealingMin: 3
+  HealingMax: 6

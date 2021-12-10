@@ -45,11 +45,12 @@ public class Encounter : MonoBehaviour
         if (currentCharacter == player)
         {
             player.charactersAnimation.SetInteger("BattleAnimation", 4);
-
+            
             currentCharacter = enemy;
         }
         else
         {
+            enemy.charactersAnimation.SetInteger("BattleAnimation", 4);
             haveVisableUI = true;
             currentCharacter = player;
         }

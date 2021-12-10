@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee2086093b770446a47a9c2a18efba4, type: 3}
   m_Name: SelfHeal
   m_EditorClassIdentifier: 
-  name: Heal
+  name: SelfHeal
   description: 
   effects:
   - {fileID: 11400000, guid: 8259704883ad0ee44a469c5d875b2d71, type: 2}

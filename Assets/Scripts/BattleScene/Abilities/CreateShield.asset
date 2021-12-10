@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee2086093b770446a47a9c2a18efba4, type: 3}
   m_Name: CreateShield
   m_EditorClassIdentifier: 
-  name: Create Shield
+  name: CreateShield
   description: 
   effects:
   - {fileID: 11400000, guid: 6908307adb7d77f4ebc14b9e30d59a22, type: 2}
